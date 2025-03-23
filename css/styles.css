@@ -1,0 +1,151 @@
+/* Reset des marges et paddings */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+}
+
+/* Menu horizontal fixe en haut */
+.top-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #333;
+    color: white;
+    padding: 10px 0;
+    z-index: 1000;
+}
+
+.top-menu ul {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    gap: 0; /* Supprime l'espace entre les éléments */
+}
+
+.top-menu ul li {
+    margin: 0; /* Supprime la marge entre les éléments */
+}
+
+.top-menu ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 10px 20px; /* Ajoute du padding pour un meilleur espacement */
+}
+
+/* Conteneur principal */
+.container {
+    display: flex;
+    margin-top: 50px; /* Ajustement pour coller au menu horizontal */
+    padding: 0 220px; /* Marge pour les menus verticaux */
+}
+
+/* Menus verticaux */
+.left-menu, .right-menu {
+    width: 200px;
+    background-color: #444;
+    padding: 20px;
+    height: calc(100vh - 50px); /* Hauteur ajustée pour coller au menu horizontal */
+    overflow: visible; /* Permet au sous-menu de dépasser */
+    position: fixed; /* Fixer les menus pour qu'ils suivent le défilement */
+    top: 50px; /* Alignement sous le menu horizontal */
+}
+
+.left-menu {
+    left: 0; /* Menu gauche */
+}
+
+.right-menu {
+    right: 0; /* Menu droit */
+}
+
+.left-menu ul, .right-menu ul {
+    list-style: none;
+}
+
+.left-menu ul li, .right-menu ul li {
+    margin: 10px 0;
+    position: relative; /* Pour positionner les sous-menus */
+}
+
+.left-menu ul li a, .right-menu ul li a {
+    color: white;
+    text-decoration: none;
+    display: block;
+    padding: 5px;
+    transition: color 0.3s ease, background-color 0.3s ease; /* Animation de survol */
+}
+
+.left-menu ul li a:hover, .right-menu ul li a:hover {
+    color: #ffcc00; /* Changement de couleur au survol */
+    background-color: #666; /* Changement de fond au survol */
+}
+
+/* Animation pour le sous-menu */
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideOut {
+    from {
+        opacity: 1;
+        transform: translateX(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateX(10px);
+    }
+}
+
+/* Sous-menu */
+.left-menu ul li .submenu {
+    display: none; /* Caché par défaut */
+    position: absolute;
+    left: 100%; /* Positionné à gauche de l'élément parent */
+    top: 0;
+    background-color: #555;
+    min-width: 150px;
+    padding: 10px;
+    border-radius: 5px;
+    z-index: 100;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    animation: slideOut 0.3s ease forwards; /* Animation de sortie par défaut */
+}
+
+.left-menu ul li .submenu.active {
+    display: block; /* Afficher le sous-menu */
+    animation: slideIn 0.3s ease forwards; /* Animation d'entrée */
+}
+
+/* Contenu central */
+.content {
+    flex-grow: 1;
+    padding: 20px;
+    background-color: white;
+}
+
+/* Blocs Perso et Stuff */
+.block {
+    margin-bottom: 20px;
+    padding: 20px;
+    background-color: #eee;
+    border-radius: 5px;
+}
+
+.block h2 {
+    margin-bottom: 10px;
+}
